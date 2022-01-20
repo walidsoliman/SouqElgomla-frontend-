@@ -1,0 +1,18 @@
+<!-- All categories -->
+<div class="container">
+<div class="row mt-4 mb-4 border border-1 rounded justify-content-center" style="box-shadow: 0px 2px 5px rgb(186,200,186,100);">
+  <div class="card-header text-center fs-3 fw-bolder lh-lg">
+    All Categories
+  </div>
+<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-12 mt-4 mb-4" *ngFor="let item of categoryList">
+  <div class="card border border-2 rounded" appProductCard>
+    <div class="card border border-2 rounded" (click)="ShowProducts(item.id)" appProductCard>
+      <img id="img" [src]="item.imgUrl" class="card-img-top p-1" alt="category image">
+      <div class="card-body">
+        <p class="card-title text-center text-truncate fs-6 fw-bold">{{item.name}}</p>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>

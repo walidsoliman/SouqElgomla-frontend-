@@ -1,0 +1,177 @@
+<div class="" >
+  <div class=" myCard" >
+    <div class="d-flex justify-content-center">
+      
+      <div class="card m-4">
+
+        <div class="card-header justify-content-center" style="text-align: center;" *ngIf="profile">
+          <img [src]="profile.image || defaultImage" class="justify-content-center rounded-circle" height="200px" width="200px" alt=""/>
+        </div>
+
+        <div class="card-footer justify-content-center">
+          <p *ngIf="profile && profile.image" class="lead text-center">Changing Profile Picture</p>
+          <div *ngIf="profile && profile.image" class="input-group ">
+            <div class="custom-file m-2">
+              <input type="file" class="custom-file-input "
+                     ng2FileSelect [uploader]="uploader" (change)="onFileSelect($event)" id="changedImage" name="image"
+                     required>
+              <label class="custom-file-label" for="changedImage">You have chosen: {{selectedFile}}</label>
+            </div>
+            <div class="input-group-append">
+              <button type="button" class=" input-group-text btn btn-outline-success"
+              (click)="changingExistPicture()">Change
+              </button>
+            </div>
+          </div>
+          <p *ngIf="profile && !profile.image" class="lead text-center">Uploading Profile Picture</p>
+          <div *ngIf="profile && !profile.image" class="input-group ">
+            <div class="custom-file m-2">
+              <input ng2FileSelect [uploader]="uploader" (change)="onFileSelect($event)" type="file"
+                     class="custom-file-input" id="newImage"
+                     name="image"
+                     required>
+              <label class="custom-file-label" for="newImage">You have chosen: {{selectedFile}} </label>
+            </div>
+            <div class="input-group-append">
+              <button type="button" class="input-group-text btn btn-outline-success"
+                      (click)="uploadingNewPicture()">Upload
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="card-body myCard mt-5 mb-5">
+
+    <div class="myCard d-flex justify-content-between m-auto p-2">
+      <h2 class="card-text"><span style="color: gray;">Name:</span> {{profile.name}}</h2>
+      <button class="btn btn-primary" (click)="openModal(nameTemplate)"><span class="fa fa-edit"></span> &nbsp;
+        Edit
+      </button>
+    </div>
+    
+    <hr class="m-2">
+    
+    <div class="myCard d-flex justify-content-between m-auto p-2">
+      <h2 class="card-text"><span style="color: gray;">Email:</span> {{profile.email}}</h2>
+      <button class="btn btn-primary" (click)="openModal(emailTemplate)"><span class="fa fa-edit"></span> &nbsp;
+        Edit
+      </button>
+    </div>
+
+    <hr class="m-2">
+  
+      
+    <div class=" myCard d-flex justify-content-between m-auto p-2">
+      <h2 class="card-text"><span style="color: gray;">User Name:</span> {{profile.userName}}</h2>
+      <button class="btn btn-primary" (click)="openModal(userNameTemplate)"><span class="fa fa-edit"></span> &nbsp;
+        Edit
+      </button>
+    </div>
+
+    <hr class="m-2">
+  
+  
+    <div class="myCard d-flex justify-content-between m-auto p-2">
+      <h2 class="card-text"><span style="color: gray;">Address:</span> {{profile.address}}</h2>
+      <button class="btn btn-primary" (click)="openModal(addressTemplate)"><span class="fa fa-edit"></span> &nbsp;
+        Edit
+      </button>
+    </div>
+
+  </div>
+  
+  <ng-template #nameTemplate>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">
+        Updating Your Name</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body ">
+      <form [formGroup]="nameForm" (ngSubmit)="updateProfile(); hide()" novalidate>
+
+      <div class="form-group">
+        <label for="name" class="label">Name: {{profile.name}}</label>
+        <input class="form-control" formControlName="name" id="name" [(ngModel)]="updateObject.name" name="name" type="text"
+               required>
+      </div>
+      <button [disabled]="!nameForm.valid" type="submit" class="btn btn-success float-right  m-2" >Save Changes</button>
+      </form>
+
+    </div>
+  </ng-template>
+
+
+  <ng-template #emailTemplate>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">
+        Updating Your Email</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body ">
+
+      <form [formGroup]="emailForm" (ngSubmit)="updateProfile(); hide()" novalidate>
+      <div class="form-group">
+        <label for="address" class="label">Email: {{profile.email}}</label>
+        <input class="form-control" formControlName="email" id="email" [(ngModel)]="updateObject.email" name="email" type="email"
+               required>
+      </div>
+      <button [disabled]="!emailForm.valid" type="submit" class="btn btn-success float-right  m-2" >Save Changes</button>
+        </form>
+
+    </div>
+  </ng-template>
+  
+  <ng-template #addressTemplate>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">
+        Updating Your Address</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body ">
+
+      <form [formGroup]="addressForm" (ngSubmit)="updateProfile(); hide()" novalidate>
+      <div class="form-group">
+        <label for="address" class="label">Address: {{profile.address}}</label>
+        <input class="form-control" formControlName="address" id="address" [(ngModel)]="updateObject.address" name="address" type="text"
+               required>
+      </div>
+      <button [disabled]="!addressForm.valid" type="submit" class="btn btn-success float-right  m-2" >Save Changes</button>
+    </form>
+
+    </div>
+  </ng-template>
+  
+  
+  <ng-template #userNameTemplate>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">
+        Updating Your User Name</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body ">
+
+      <form [formGroup]="usernameForm" (ngSubmit)="updateProfile(); hide()" novalidate>
+      <div class="form-group">
+        <label for="userName" class="label">User Name: {{profile.userName}}</label>
+        <input class="form-control" formControlName="username" id="userName" [(ngModel)]="updateObject.userName" name="userName" type="text"
+               required>
+      </div>
+      <button [disabled]="!usernameForm.valid" type="submit" class="btn btn-success float-right  m-2" >Save Changes</button>
+    </form>  
+
+    </div>
+  </ng-template>

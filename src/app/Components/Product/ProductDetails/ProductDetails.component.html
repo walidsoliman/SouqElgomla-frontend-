@@ -1,0 +1,66 @@
+<!-- product details -->
+<div class="row rounded">
+  <div class="col-12 mt-3">
+    <div class="card m-3" style="box-shadow: 0px 2px 5px rgb(186,200,186,100);">
+      <div class="row g-0">
+        <div class="col-lg-4 col-md-5 col-sm-6 p-5">
+          <img id="img" [src]="product.imageUrl" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-lg-8 col-md-7 col-sm-6 p-3">
+          <div class="card-body mt-5">
+            <h5 class="card-title fs-5">{{product.name}}</h5>
+            <p class="card-text fs-6">{{product.price | currency:'EGP':'code'}}</p>
+            <p class="card-text fs-4" style="color: #f6b01e;">
+              <rating [(ngModel)]="product.rate" [max]="max" [readonly]=true></rating>
+            </p>
+            <p class="card-text fs-6">
+              We are delivering high quality grocery products to your doorstep, follow us for frequent updates on our
+              products and prices.
+            </p>
+            <p class="card-text fs-6">
+              {{product.description}}.
+            </p>
+            <p class="card-text fs-6">
+              Unit weight : {{product.unitWeight}}.
+            </p>
+            <p class="card-text fs-6">
+              Number of packages : {{product.packgesNumber}}.
+            </p>
+            <button id="btn" class="btn mt-3 fs-5 ps-5 pe-5" type="button" (click)="AddToCart(product)">
+              <i class="fas fa-cart-plus"></i>
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- related items -->
+
+<div class="row rounded justify-content ms-3 me-3 mb-3 border border-1"
+  style="box-shadow: 0px 2px 5px rgb(186,200,186,100);" [hidden]="IsThereRelated">
+  <div class="card-header fs-5 fw-bold">
+    Related products
+  </div>
+  <div class="col-12 col-sm-4 col-lg-3 col-xl-2 mt-2 mb-2 ms-1" *ngFor="let item of ReltedProdList">
+    <div class="card" appInnercardshadow>
+      <img id="img" [src]="item.imageUrl" class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text text-truncate fs-6">{{item.name}}</p>
+        <p class="card-text fw-bold">{{item.price | currency:'EGP':'code'}}</p>
+        <div class="row justify-content-evenly">
+          <button class="col-4 btn fs-5 infobtn" type="button" (click)="ShowprodDetails(item.id)" tooltip="Product info"
+            placement="right">
+            <i class="fas fa-info-circle"></i>
+          </button>
+          <button id="btn" class="col-4 btn" type="button" (click)="AddToCart(item)" tooltip="Add to cart"
+            placement="right">
+            <i class="fas fa-cart-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

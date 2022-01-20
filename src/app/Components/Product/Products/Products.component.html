@@ -1,0 +1,169 @@
+<div class="row justify-content-center gx-5">
+  <!-- left side filteration -->
+  <div class="col-lg-3 col-sm-5 col-11 mt-3">
+    <div class="card border border-1 mt-3" style="box-shadow: 0px 2px 5px rgb(186,200,186,100);">
+      <ul class="list-group list-group-flush ms-3 mt-4 mb-4">
+        <!-- PRODUCT RATING -->
+        <li class="list-group-item">
+          <h6 class="card-title fs-6">PRODUCT RATING</h6>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+              (click)="FilterByRate(4)">
+            <label class="form-check-label" for="flexRadioDefault1" style="color:#f6b01e;">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <span style="color: black;"> & above</span>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+              (click)="FilterByRate(3)">
+            <label class="form-check-label" for="flexRadioDefault1" style="color:#f6b01e;">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <span style="color: black;"> & above</span>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+              (click)="FilterByRate(2)">
+            <label class="form-check-label" for="flexRadioDefault1" style="color:#f6b01e;">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <span style="color: black;"> & above</span>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+              (click)="FilterByRate(1)">
+            <label class="form-check-label" for="flexRadioDefault1" style="color:#f6b01e;">
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <span style="color: black;"> & above</span>
+            </label>
+          </div>
+        </li>
+
+        <!-- PRICE Rang -->
+        <li class="list-group-item">
+          <h6 class="card-title fs-6">PRICE (EGP)</h6>
+          <div class="row">
+            <div class="col-6">From:
+              <!-- <label for="minprice">From</label> -->
+              <input type="number" name="minprice" id="minprice" [min]="minPriceInput" [max]="maxPriceInput"
+                [value]="minPriceInput" #MinPrice>
+            </div>
+
+            <div class="col-6"> To:
+              <!-- <label for="minprice">TO</label> -->
+              <input type="number" name="minprice" id="minprice" [min]="minPriceInput" [max]="maxPriceInput"
+                [value]="maxPriceInput" #MaxPrice>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <button type="button" class="btn btn-warning me-3 mt-3 col-4"
+              (click)="Apply(MinPrice.value,MaxPrice.value)">Apply</button>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- right side products -->
+  <div class="col-lg-8 col-sm-6 col-11 mt-3 mb-3">
+    <div class="row card border border-1" style="box-shadow: 0px 2px 5px rgb(186,200,186,100);">
+      <div class="card-header fs-5">
+        {{CategoryName}}
+      </div>
+      <ul class="list-group list-group-flush m-0">
+        <li class="list-group-item">
+          <div class=" row justify-content-start g-0">
+            <div class="col-lg-8 col-md-7 col-12 fs-6 mt-2 text-muted">
+              {{NumberOfProducts}} products found
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-3 col-2 mt-2">
+              <span class="text fs-6">Sort by:</span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+              <select class="form-select" aria-label="Default select example" (change)="orderByPrice(select.value)"
+                #select>
+                <option value="0"></option>
+                <option value="1">Price:Low to Hight</option>
+                <option value="2">Price:Hight to Low</option>
+              </select>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 mt-2 mb-2" *ngFor="let item of prodList">
+              <div class="card" appInnercardshadow>
+                <img id="img" [src]="item.imageUrl" class="card-img-top p-3" [alt]="item.name">
+                <div class="card-body">
+                  <h5 class="card-title text-truncate fs-6">{{item.name}}</h5>
+                  <p class="card-text fs-6">{{item.price| currency:'EGP':'code'}}</p>
+                  <p class="card-text fs-5" style="color: #f6b01e;">
+                    <rating [(ngModel)]="item.rate" [max]="5" [readonly]=true></rating>
+                  </p>
+                  <div class="row justify-content-evenly">
+                    <button class="col-4 btn fs-5 infobtn" type="button"
+                      (click)="prodDetails(item.id)" tooltip="Product info" placement="right">
+                      <i class="fas fa-info-circle"></i>
+                    </button>
+                    <button id="btn" class="col-4 btn" type="button" (click)="AddToCart(item)" tooltip="Add to cart" placement="right">
+                      <i class="fas fa-cart-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Top Picks for you -->
+
+<div class="container-fluid mt-3 mb-4">
+  <div class="row border border-1 rounded justify-content-around m-0"
+    style="box-shadow: 0px 2px 5px rgb(186,200,186,100);">
+    <div class="card-header text-center fs-3 fw-bolder lh-lg">
+      Top Picks for you
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 pt-1 mb-2" *ngFor="let item of PicksProduct">
+      <div class="card" appInnercardshadow (mouseover)="showButtons()" (mouseout)="HideButtons()">
+        <img id="img" [src]="item.imageUrl" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text text-truncate fs-6">{{item.name}}</p>
+          <p class="card-text fw-bold">{{item.price | currency:'EGP':'code'}}</p>
+          <div class="row justify-content-evenly">
+            <button class="col-4 btn fs-5 infobtn" type="button"
+              (click)="prodDetails(item.id)"  tooltip="Product info" placement="right">
+              <i class="fas fa-info-circle"></i>
+            </button>
+            <button id="btn" class="col-4 btn" type="button" (click)="AddToCart(item)" tooltip="Add to cart" placement="right">
+              <i class="fas fa-cart-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

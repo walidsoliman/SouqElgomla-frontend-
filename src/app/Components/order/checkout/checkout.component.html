@@ -1,0 +1,133 @@
+<div style="background-color: rgb(228, 241, 241);">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-7 my-5 py-5" style="background-color: white;border: 3px solid orange;">
+                <div *ngIf="pesonalInfo" style="border-radius: blue 2px solid;" class="px-5">
+                    <h3> {{Name}}</h3>
+                    <h3> <label> {{City}}</label></h3>
+                    <h3><label> {{Street}}</label></h3>
+                    <h3><label> {{Phone}}</label></h3>
+                    <h1 class="text-center"> <button (click)="ShowFormPersonalData()" class="btn btn-primary">
+                            Change</button></h1>
+                </div>
+                <div *ngIf="!pesonalInfo">
+                    
+                    <form (ngSubmit)="savePersonalInfo()" [formGroup]="myform">
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Full Name</label>
+                            <input  name="Name" type="text" class="form-control"  id="name" required formControlName="Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="City" class="form-label">City</label>
+                            <select name="City" class="form-control" id="City" formControlName="City">
+                                <option value="Cairo" selected>Cairo</option>
+                                <option value="Qena">Qena</option>
+                                <option value="Assuit"> Assuit</option>
+                                <option value="Sohge"> Sohag</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Street" class="form-label">Street</label>
+                            <input [(ngModel)]="Street" name="Street" type="text" class="form-control" required id="Street" formControlName="Street">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Phone" class="form-label">Mobile</label>
+                            <input name="Phone" type="number" class="form-control" required id="Phone" placeholder="cdccvx"
+                                pattern="^01[0-2]\d{1,8}$" formControlName="Phone">
+                        </div>
+                        
+                          <input type="submit" class="btn btn-primary" value="Save">
+                       
+                    </form>
+                </div>
+                <form>
+                    <label style="font-size: 30px; color: orange;">Choose Payment Method</label>
+                    <label class="py-5"></label>
+                    <div class="form-check py-2">
+                        <input class="form-check-input" type="radio" name="paymentType" id="cash" (change)="showcash()">
+                        <label class="form-check-label" for="cash">
+                            <img src="assets/cash.jpg" style="width: 70px; height: 50px;">
+                            <span>Cash On Delivery</span>
+                        </label>
+                    </div>
+
+                    <div class="form-check py-2">
+                        <input class="form-check-input" type="radio" name="paymentType" id="paypal"
+                            (change)="showpaypal()">
+                        <label class="form-check-label" for="paypal">
+                            <img src="assets/paypal.png" style="width: 70px; height: 50px;">
+                            <span>PayPal</span>
+                        </label>
+                    </div>
+
+                    <div #paypal [hidden]="!showPaypal"></div>
+                    <div [hidden]="!showCash">
+                        <ul type="1">
+                            <p>your shipment at home or when you receive it from the SouqELGomla receiving center.</p>
+                            <li>
+                                <p> Payment is accepted in Egyptian pounds only.</p>
+                            </li>
+                            <li>
+                                <p>Please provide the exact amount only when paying for the possibility that small
+                                    denominations of cash will not be available with the delivery representative in case
+                                    of paying a value higher than the value of the order shown.
+                            </li>
+                            <li> The product must be paid for before the shipment is opened.</li>
+                        </ul>
+                        <button class="btn btn-warning form-control" (click)="checkoutOder()"> Order Checkout </button>
+                        <!-- <input type="submit" class="btn btn-warning form-control" value="checkout" onclick="checkoutOder()"> -->
+
+
+                    </div>
+
+
+                </form>
+            </div>
+            <div class=" col-lg-2"></div>
+            <div class="col-lg-3 my-5" style="border: 3px solid orange; background-color: gainsboro;">
+
+                <div class="row">
+                    <div>
+                        <h1> Cart ( {{cart.length}} Item)</h1>
+                    </div>
+                </div>
+
+                <div class="row pt-5 border-bottom  border-warning" *ngFor="let item of cart">
+                    <div class="col-lg-12">
+                        <div>
+                            <img [src]="item.imageUrl" class="img-fluid" alt=" " style="height:70px;">
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <p>{{item.name}}</p>
+                    </div>
+                    <div class="col-lg-12">
+
+                    </div>
+                    <div class="col-lg-12">
+                        <p>Price : {{item.price}} </p>
+                    </div>
+                    <div class="col-lg-12">
+                        <p>Total price : </p>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-lg-12 py-2">
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="my-5 text-center" style="color:orange ;font-size :30px;">
+                    Total Price {{totalPrice}}
+                </div>
+
+                <div class="my-5 text-center">
+                    <button type="button" class="btn btn-warning" (click)="backToCart()">Modify Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+#img {
+  padding: 10%;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-transition-property: padding,-webkit-transform;
+  transition-property: padding,-webkit-transform;
+  transition-property: padding,transform;
+  transition-property: padding,transform,-webkit-transform;
+  -webkit-transition-duration: 0.7s;
+          transition-duration: 0.7s;
+}
+
+#img:hover {
+  padding: 5%;
+  -webkit-transform: rotate(7deg);
+          transform: rotate(7deg);
+}
+/*# sourceMappingURL=ProductDetails.component.css.map */

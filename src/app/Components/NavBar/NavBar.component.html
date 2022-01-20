@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#466640 ;">
+  <div class="container-fluid">
+    <img src="assets/souqText.png" alt="" id="headerName"class="animate__animated animate__backInLeft animate__slow 0.3s" style="width: 12%;">
+    <a class="navbar-brand" routerLink="/Category"  routerActiveLink="active">
+      <img style="width:60px;"src="assets/finalLogo-en.png" alt="" id="logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="javascript:void(0)" routerLink="/Category" routerActiveLink="active">
+            <i class="fas fa-home"></i> Home </a>
+        </li>
+        
+        <li class="nav-item border-0">
+          <div class="dropdown"   routerActiveLink="active">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="background-color:#466640 ;">
+              <i class="fas fa-store"></i> Category
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li *ngFor="let item of categories">
+                <a class="dropdown-item" href="javascript:void(0)" (click)="ShowCategory(item.id)"> {{item.name}} </a></li>
+            </ul>
+          </div>
+        </li>
+        
+        <!-- user -->
+    <div class="dropdown">
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" 
+        data-bs-toggle="dropdown"
+        aria-expanded="false" style="background-color:#466640 ;" 
+        routerActiveLink="active" >
+        <i class="far fa-user-circle"></i> 
+         {{authService.username}}
+      </button>  
+    
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+        <li>
+          <a href="javascript:void(0)" class="btn" routerLink="/auth/register" routerActiveLink="active"
+            [hidden]="isLogged">Signup</a>
+        </li>
+
+        <li>
+          <a href="javascript:void(0)" class="btn" routerLink="/auth/login" routerActiveLink="active"
+            [hidden]="isLogged">Login</a>
+        </li>
+       
+        <li>
+          <a type="button" class="dropdown-item" routerActiveLink="active"
+          routerLink="/profile" [hidden]="!isLogged">Profile</a>
+        </li>
+        <li>
+          <a type="button" class="dropdown-item" routerActiveLink="active"
+          routerLink="/order/Orders" [hidden]="!isLogged">Orders</a>
+        </li>
+          
+        <li>
+          <a type="button" class="dropdown-item" routerActiveLink="active" [hidden]="!isLogged"
+            (click)="logout()">logout</a>
+        </li>
+    
+      </ul>
+    </div>
+
+      </ul>
+
+      <a  style="text-decoration:none;" id="cartBTN"><button type="button" class="btn position-relative text-white" style="background-color: #ed872f;"
+        (click)="ShowCart()">
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart
+        <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill" id="cardNum"
+            style="background-color: #5b84c4;">
+
+            <span >{{NumOfItemInTheCart}}</span>
+        </span>
+    </button></a>
+    </div>
+    
+  </div>
+</nav>

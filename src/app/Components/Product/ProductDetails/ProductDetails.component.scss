@@ -1,0 +1,10 @@
+#img{
+    padding: 10%;
+    transform: rotate(0deg);
+    transition-property:padding,transform;
+    transition-duration: 0.7s;
+}
+#img:hover{
+    padding: 5%;
+    transform: rotate(7deg);
+}

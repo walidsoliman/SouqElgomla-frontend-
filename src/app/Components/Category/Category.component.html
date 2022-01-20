@@ -1,0 +1,122 @@
+<div class="container-fluid ps-0 pe-0">
+  <!-- <app-Header></app-Header> -->
+</div>
+<!-- slide -->
+<div class="row justify-content-center">
+  <div class="w-100">
+    <carousel [noWrap]="noWrapSlides" [showIndicators]="showIndicator" [isAnimated]="true">
+      <slide *ngFor="let slide of slides; let index=index">
+        <img class="rounded" [src]="slide.image" alt="image slide" style="display: block; width: 100%;">
+
+        <div class="carousel-caption">
+        </div>
+      </slide>
+    </carousel>
+  </div>
+</div>
+
+
+<!-- Top categories -->
+<div class="container mt-3">
+  <div class="row border border-1 rounded justify-content-center m-0"
+    style="box-shadow: 0px 2px 5px rgb(186,200,186,100);">
+    <div class="card-header text-center fs-3 fw-bolder lh-lg m-0">
+      Top categories
+    </div>
+    <div class="col-md-3 col-12 mt-3 mb-3" *ngFor="let item of topCategory ;let i = index">
+      <div class="card border border-2 rounded" appProductCard>
+
+        <div class="row justify-content-center m-0 p-0">
+          <div class="col-10  border-bottom m-0">
+            <img id="img" [src]="item.products[0].imageUrl" class="card-img-top" alt="..."
+              (click)="ProdDetails(item.products[0].id)"  
+               [tooltip]="item.products[0].name" placement="right">
+          </div>
+          <div class="col-5 border-end m-0">
+            <img id="img" [src]="item.products[1].imageUrl" class="card-img-top" alt="..."
+              (click)="ProdDetails(item.products[1].id)"   
+              [tooltip]="item.products[0].name" placement="right">
+          </div>
+          <div class="col-5 m-0">
+            <img id="img" [src]="item.products[2].imageUrl" class="card-img-top" alt="..."
+              (click)="ProdDetails(item.products[2].id)"   
+              [tooltip]="item.products[0].name" placement="right">
+          </div>
+        </div>
+
+        <div class="card-body row border-top border-3 m-1 justify-content-center">
+          <p class="col-12 card-title text-center mt-1 text-truncate fs-6 fw-bold">{{item.name}}</p>
+          <button id="btn" class="btn col-8 btn-primary" (click)="ShowProducts(item.id)">view more</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- All categories -->
+
+<!-- <div class="container mb-4">
+  <div class="row mt-4 border border-1 rounded" style="box-shadow: 0px 2px 5px rgb(186,200,186,100);">
+    <div class="card-header text-center fs-3 fw-bolder lh-lg">
+      Shop By Category
+    </div>
+    <div class="col-md-2 col-12 mt-3 mb-3" *ngFor="let item of categoryList">
+      <div class="card border border-2 rounded" (click)="ShowProducts(item.id)" appProductCard>
+        <img id="img" [src]="item.imgUrl" class="card-img-top" alt="category image">
+        <div class="card-body">
+          <p class="card-title text-center text-truncate fs-6 fw-bold">{{item.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container mb-4">
+  <div class="row mt-4 border border-1 rounded justify-content-center" style="box-shadow: 0px 2px 5px rgb(186,200,186,100);">
+    <div class="card-header text-center fs-3 fw-bolder lh-lg">
+      Shop By Category
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 mt-3 mb-3" *ngFor="let item of categoryList">
+      <div class="card border border-2 rounded" appProductCard>
+
+        <div class="row justify-content-center m-0 p-0">
+          <div class="col-10  border-bottom m-0">
+            <img id="img" [src]="item.products[0].imageUrl" class="card-img-top" alt="..."
+              (click)="ProdDetails(item.products[0].id)"  [tooltip]="item.products[0].name" placement="right">
+          </div>
+          <div class="col-5 border-end m-0">
+            <img id="img" [src]="item.products[1].imageUrl" class="card-img-top" alt="..."
+              (click)="ProdDetails(item.products[1].id)"   [tooltip]="item.products[0].name" placement="right">
+          </div>
+          <div class="col-5 m-0">
+            <img id="img" [src]="item.products[2].imageUrl" class="card-img-top" alt="..."
+              (click)="ProdDetails(item.products[2].id)"   [tooltip]="item.products[0].name" placement="right">
+          </div>
+        </div>
+
+        <div class="card-body row border-top border-3 m-1 justify-content-center">
+          <p class="col-12 card-title text-center mt-1 text-truncate fs-6 fw-bold">{{item.name}}</p>
+          <button id="btn" class="btn col-8 btn-primary" (click)="ShowProducts(item.id)">view more</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 mt-3 mb-3" >
+
+      <!-- view all category -->
+      <div class="card border border-2 rounded" appProductCard>
+        <div class="card-body">
+          <img id="img" src="assets/allcategory.jpeg" class="card-img-top" alt="...">
+          <p class="text-center fw-bolder fs-4 lh-sm"> View  </p>
+          <p class="text-center fw-bolder fs-4 lh-sm"> ALL Categories </p>
+        </div>
+        <div class="card-body row border-top border-3 m-2 justify-content-center">
+          <button id="btn" class="btn col-8 btn-primary mt-4 mb-2" (click)="ShowCategories()" >
+            <i class="far fa-arrow-alt-circle-right fs-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

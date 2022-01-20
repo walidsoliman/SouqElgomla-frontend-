@@ -1,0 +1,141 @@
+.btn.btn-outline-success.btn-lg{
+    width:250px;
+    height:60px;
+    border-color: #193a6f ;
+    border-width: 2px;
+    color: #193a6f ;
+    animation-duration: 2s; 
+    margin-bottom: 200px;
+    margin-top: 50px;
+    margin-left: 20px;
+}
+.btn.btn-outline-success.btn-lg:hover{
+    background-color: #193a6f; 
+    color: #fff ; 
+}
+
+.btn.btn-success.btn-lg{
+
+    width:250px;
+    height:60px;
+    background-color: #193a6f;
+    border-color: #193a6f ;
+    animation-duration: 2s;
+    margin-bottom: 200px;
+    margin-left: 70px;
+    margin-top: 50px;
+}
+
+#headerPic
+{
+    width:100%;
+    background-image: url("../../../assets/pic.png");
+    background-size:contain;
+
+}
+ #headerName
+ {
+    margin-top: 190px;
+     width:50%;
+     margin-left: 50px;
+
+ }
+
+ #headerSolgan
+ { 
+
+     width:30%;
+     margin-left: 50px;
+
+ }
+
+
+//#476042   green
+
+@media (min-width: 768px) and (max-width: 1024px)
+{
+    .btn.btn-success.btn-lg
+    {
+        margin-bottom:50px;
+    }
+
+    .btn.btn-outline-success.btn-lg
+    {
+        margin-bottom:50px;
+    }
+
+    #headerName
+    {
+       margin-top: 200px;
+        width:90%;
+        margin-left: 50px;
+   
+    }
+   
+    #headerSolgan
+    { 
+   
+        width:90%;
+        margin-left: 50px;
+   
+    }
+
+}
+
+@media (min-width: 620px) and (max-width: 768px)
+{
+    #headerName
+    {
+       margin-top: 200px;
+        width:90%;
+        margin-left: 50px;
+   
+    }
+   
+    #headerSolgan
+    { 
+   
+        width:90%;
+        margin-left: 50px;
+   
+    }
+}
+
+@media (min-width: 300px) and (max-width: 619px)
+{
+
+    .btn.btn-outline-success.btn-lg
+    {
+        margin-bottom: 150px;
+        margin-top: 10px;
+        margin-left: 60px;
+    }
+
+    .btn.btn-success.btn-lg
+    {
+        margin-bottom:0;
+        margin-top: 10px;
+        margin-left: 60px;
+    }
+
+    #headerName
+    {
+       margin-top: 150px;
+        width:90%;
+        margin-left:20px;
+   
+    }
+   
+    #headerSolgan
+    { 
+   
+        width:90%;
+        margin-left:20px;
+   
+    }
+
+    #headerPic
+    {
+        background-position:1000px;
+    }
+}

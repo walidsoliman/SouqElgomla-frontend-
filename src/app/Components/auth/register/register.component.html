@@ -1,0 +1,85 @@
+<div class="register" >
+    <div class="row">
+      <div class="col-md-3 register-left">
+        <img src="assets/finalLogo-en.png" alt="" />
+        <h3>Welcome</h3>
+        <p>Do you already have an account?</p>
+        <a class="btn btn-outline-danger m-3" routerLink="/auth/login">
+          Login <i class="fas fa-sign-in-alt"></i>
+        </a>
+  
+        <a class="btn btn-outline-success m-3" routerLink="/Category">
+          Go Home 
+        </a>
+        
+      </div>
+      <div class="col-md-9 register-right p-3">
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="home-tab">
+            <h3 class="register-heading">Enter Profile Information</h3>
+            <!-- row form -->
+            <div class="row register-form">
+              <form [formGroup]="registrationForm" (ngSubmit)="register()" novalidate>
+
+                    <!-- createProfileDto -->
+
+                  <div class="d-flex justify-content-center mt-2">
+                    <mat-form-field style="width: 300px;margin: 5px;">
+                      <input id="name" formControlName="name" aria-label="Name" type="text" matInput
+                             placeholder="Name" required />
+                    </mat-form-field>
+
+                    <mat-form-field style="width: 300px;margin: 5px;" class="ml-3">
+                      <input type="text" id="address" formControlName="address" matInput placeholder="Address"
+                             aria-label="Address" required />
+                    </mat-form-field>
+                  </div>
+  
+  
+                  <div class="d-flex justify-content-center mt-2">
+                    <mat-form-field style="width: 600px;margin: 5px;">
+                      <input type="text" id="userName" formControlName="userName" aria-label="User Name" matInput placeholder="User Name" required />
+                    </mat-form-field>
+
+              
+                  </div>
+  
+                  <div class="d-flex justify-content-center mt-2">
+                    <mat-form-field style="width: 300px;margin: 5px;">
+                      <input type="text" id="email" placeholder="email" formControlName="email" matInput aria-label="email" required />
+                    </mat-form-field>
+                    <mat-form-field style="width: 300px;margin: 5px;" class="ml-3">
+                      <input type="password" id="password" formControlName="password" matInput aria-label="Password"
+                             placeholder="Password" required />
+                    </mat-form-field>
+                  </div>
+  
+                                   
+
+                <button [disabled]="!registrationForm.valid" class="btn btn-primary"   type="submit">Register</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #invalidCredentials>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        Invalid Credentials
+      </h4>
+      <button type="button" (click)="hide()" class="close pull-right" aria-label="Close"
+      ><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body text-center">
+      <div class="alert alert-danger" role="alert">
+        {{regError}}
+      </div>
+      <button type="button" class="btn btn-danger" (click)="hide()">
+        Try Again!
+      </button>
+    </div>
+  </ng-template>

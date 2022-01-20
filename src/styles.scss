@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+#btn{
+    // height: 48px;
+    border-radius: 3rem;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgb(0, 0,0,50%);
+    background-color: #ed872f;
+    color: white;
+}
+#btn:hover{
+    background-color: #b54c26;
+    color: white;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #fffdfd;}
+
+.infobtn{
+    border-radius: 3rem;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgb(0, 0,0,50%);
+    background-color: #51badd;
+    color: white;
+}
+
+.infobtn:hover{
+    background-color: #2e6e83;
+    color: white;
+}
+
+.card{
+    background-color: #fffdfd;
+}
